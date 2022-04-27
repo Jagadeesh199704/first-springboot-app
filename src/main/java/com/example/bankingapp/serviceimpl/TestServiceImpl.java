@@ -1,5 +1,6 @@
 package com.example.bankingapp.serviceimpl;
 
+import com.example.bankingapp.dto.InsuranceRequest;
 import com.example.bankingapp.service.TestService;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,14 @@ public class TestServiceImpl implements TestService {
         } else {
             return "Product name cannot be null";
         }
+    }
+
+    @Override
+    public String insuranceDetail(InsuranceRequest insuranceRequest) {
+
+        //DB logic
+
+        return null;
     }
 
 }
