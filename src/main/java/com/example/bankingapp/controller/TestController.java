@@ -1,16 +1,28 @@
 package com.example.bankingapp.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.bankingapp.dto.InsuranceRequest;
+import com.example.bankingapp.service.TestService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-
 public class TestController {
 
-    @GetMapping("test")
-    public String myFirstMethod(){
+    @Autowired
+    private TestService testService;
 
-        return "Learning spring-boot!!";
+    @GetMapping("product-details/{productName}")
+    public String myFirstMethod(@PathVariable String productName) {
+
+        return testService.fetchProductDetails(productName);
+
     }
 
+    @PostMapping("insurance")
+    public String insuranceDetails(@RequestBody InsuranceRequest insuranceRequest){
+
+        return testService.insuranceDetail(insuranceRequest);
+    }
 }
+
+
