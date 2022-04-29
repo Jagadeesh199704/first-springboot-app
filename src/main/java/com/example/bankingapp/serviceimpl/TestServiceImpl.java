@@ -1,11 +1,21 @@
 package com.example.bankingapp.serviceimpl;
 
 import com.example.bankingapp.dto.InsuranceRequest;
+import com.example.bankingapp.dto.UserDetails;
+import com.example.bankingapp.entity.User;
+import com.example.bankingapp.repository.UserDAO;
 import com.example.bankingapp.service.TestService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class TestServiceImpl implements TestService {
+
+    @Autowired
+    private UserDAO userDAO;
+
     @Override
     public String fetchProductDetails(String productName) {
         if (productName != null) {
@@ -27,7 +37,30 @@ public class TestServiceImpl implements TestService {
 
         //DB logic
 
-        return null;
+        User user = new User();
+        user.setName(insuranceRequest.getName());
+        user.setAge(insuranceRequest.getAge());
+
+        userDAO.save(user);
+        return "Saved Sucessfully!!!";
+    }
+
+    @Override
+    public UserDetails getUserDetails(int userId) {
+        //DB call
+        Optional<User> user = userDAO.findById(userId);
+
+        if(!user.isPresent()){
+            throw new NullPointerException("User not found");
+        }
+        User userDetailsFromDb = user.get();
+
+        UserDetails userDetails = new UserDetails();
+        userDetails.setName(userDetailsFromDb.getName());
+        userDetails.setAge(userDetailsFromDb.getAge());
+        userDetails.setId(userDetailsFromDb.getId());
+
+        return userDetails;
     }
 
 }

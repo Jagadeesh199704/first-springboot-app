@@ -9,12 +9,9 @@ import lombok.ToString;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class InsuranceRequest {
+public class UserDetails {
 
+    private int id;
     private String name;
-    private String moblileNumber;
-    private String location;
-    private String insuranceAmount;
-    private String insuranceType;
     private int age;
 }
