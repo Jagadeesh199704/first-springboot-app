@@ -1,0 +1,9 @@
+package com.example.bankingapp.repository;
+
+import com.example.bankingapp.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserDAO extends JpaRepository<User, Integer> {
+}

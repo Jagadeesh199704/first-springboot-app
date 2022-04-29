@@ -1,6 +1,7 @@
 package com.example.bankingapp.controller;
 
 import com.example.bankingapp.dto.InsuranceRequest;
+import com.example.bankingapp.dto.UserDetails;
 import com.example.bankingapp.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,11 @@ public class TestController {
     public String insuranceDetails(@RequestBody InsuranceRequest insuranceRequest){
 
         return testService.insuranceDetail(insuranceRequest);
+    }
+
+    @GetMapping("get-user-details/{userId}")
+    public UserDetails fetchUserDetails(@PathVariable int userId){
+        return  testService.getUserDetails(userId);
     }
 }
 
