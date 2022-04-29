@@ -1,6 +1,7 @@
 package com.example.bankingapp.serviceimpl;
 
 import com.example.bankingapp.dto.InsuranceRequest;
+import com.example.bankingapp.dto.UserAddress;
 import com.example.bankingapp.dto.UserDetails;
 import com.example.bankingapp.entity.User;
 import com.example.bankingapp.repository.UserDAO;
@@ -8,6 +9,8 @@ import com.example.bankingapp.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -49,16 +52,35 @@ public class TestServiceImpl implements TestService {
     public UserDetails getUserDetails(int userId) {
         //DB call
         Optional<User> user = userDAO.findById(userId);
+        UserDetails userDetails = new UserDetails();
+        List<UserAddress> userAddressList = new ArrayList<>();
 
-        if(!user.isPresent()){
+        if (!user.isPresent()) {
             throw new NullPointerException("User not found");
         }
         User userDetailsFromDb = user.get();
 
-        UserDetails userDetails = new UserDetails();
         userDetails.setName(userDetailsFromDb.getName());
         userDetails.setAge(userDetailsFromDb.getAge());
         userDetails.setId(userDetailsFromDb.getId());
+
+        //from address DTO
+        UserAddress userAddress = new UserAddress();
+        userAddress.setHouseNum("182");
+        userAddress.setAddressLine("JP nagar");
+        userAddress.setCountry("India");
+        userAddress.setPinCode(580001);
+
+        UserAddress userAddress1 = new UserAddress();
+        userAddress1.setHouseNum("185");
+        userAddress1.setAddressLine("Bapuji nagar");
+        userAddress1.setCountry("Davangeri");
+        userAddress1.setPinCode(577001);
+
+        userAddressList.add(userAddress);
+        userAddressList.add(userAddress1);
+        userDetails.setAddress(userAddressList);
+
 
         return userDetails;
     }

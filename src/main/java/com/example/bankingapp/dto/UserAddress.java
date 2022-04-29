@@ -5,18 +5,14 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.List;
-
 @Getter
 @Setter
 @EqualsAndHashCode
 @ToString
-public class UserDetails {
+public class UserAddress {
 
-    private int id;
-    private String name;
-    private int age;
-
-    //DTO inside DTO
-    private List<UserAddress> address;
+    private String houseNum;
+    private String addressLine;
+    private String country;
+    private int pinCode;
 }
