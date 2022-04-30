@@ -85,4 +85,28 @@ public class TestServiceImpl implements TestService {
         return userDetails;
     }
 
+    @Override
+    public UserDetails fetchUserDetailsByName(String userName) {
+
+        User user = userDAO.findByName(userName);
+        UserDetails userDetails = new UserDetails();
+
+        userDetails.setName(user.getName());
+        userDetails.setAge(user.getAge());
+        userDetails.setId(user.getId());
+;        return userDetails;
+    }
+
+    @Override
+    public UserDetails fetchUserDetailsByNameNdId(int id, String name) {
+        User user = userDAO.findByIdAndName(id, name);
+        UserDetails userDetails = new UserDetails();
+
+        userDetails.setName(user.getName());
+        userDetails.setAge(user.getAge());
+        userDetails.setId(user.getId());
+        return userDetails;
+
+    }
+
 }

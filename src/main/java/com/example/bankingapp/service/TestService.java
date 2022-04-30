@@ -12,4 +12,8 @@ public interface TestService {
     String insuranceDetail(InsuranceRequest insuranceRequest);
 
     UserDetails getUserDetails(int userId);
+
+    UserDetails fetchUserDetailsByName(String userName);
+
+    UserDetails fetchUserDetailsByNameNdId(int id, String name);
 }
