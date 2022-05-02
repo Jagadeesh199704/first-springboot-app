@@ -29,6 +29,18 @@ public class TestController {
     public UserDetails fetchUserDetails(@PathVariable int userId){
         return  testService.getUserDetails(userId);
     }
+
+    @GetMapping("get-user-deatils/{userName}")
+    public UserDetails fetchUserDetailsName(@PathVariable String userName){
+        return testService.fetchUserDetailsByName(userName);
+    }
+
+    //fetching the details by id and name
+
+    @GetMapping("get-uer-details/{id}/{name}")
+    public UserDetails fetchUserDetailsByNameAndId(@PathVariable int id, @PathVariable String name){
+        return testService.fetchUserDetailsByNameNdId(id, name);
+    }
 }
 
 
